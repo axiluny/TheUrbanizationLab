@@ -26,16 +26,19 @@ from shutil import *
 '''
 Globals, Constants, and other declarations.
 '''
+# Main disk directory
+main_disk_dir = 'C:/TheUrbanizationLab'
+
 # GUI components location
-greetings_image_location = 'C:\WolongRun\GUI Resources\Resources\The Urbanization Lab.png'
-greetings_map_location = 'C:\WolongRun\GUI Resources\Resources\greetings_map_blank.png'
-icons_path = 'C:\WolongRun\GUI Resources\SEEMS Icons'
+greetings_image_location = str(main_disk_dir + '\\' +'GUI Resources\Resources\The Urbanization Lab.png')
+greetings_map_location = str(main_disk_dir + '\\' + 'GUI Resources\Resources\greetings_map_blank.png')
+icons_path = str(main_disk_dir + '\\' + 'GUI Resources\SEEMS Icons')
 
 
 # Global constants for database managements
-db_file_name = 'WolongDB.mdb'
-input_dbpath = 'C:/WolongRun'
-output_dbpath = 'C:/WolongRun/Results_Output'
+db_file_name = 'TheUrbanizationLabDB.mdb'
+input_dbpath = main_disk_dir
+output_dbpath = str(main_disk_dir + '\\' + 'Results_Output')
 input_db_location = str(input_dbpath + '\\' + db_file_name)
 output_db_location = str(output_dbpath + '\\' + db_file_name)
 
@@ -69,11 +72,11 @@ arcpy_workspace = output_dbpath + '\\' + db_file_name
 # Input ArcMap .mxd map name
 input_mxd = 'SEEMS_Map.mxd'
 # Input ArcMap .mxd map file path
-input_mxd_path = r'C:\WolongRun\GIS Resources'
+input_mxd_path = str(main_disk_dir + '\\' + 'GIS Resources')
 # Input Layer styles location
-layer_styles_location = r'C:\WolongRun\GIS Resources\layer_styles\LandUse.lyr'
+layer_styles_location = str(main_disk_dir + '\\' + 'GIS Resources\layer_styles\LandUse.lyr')
 # External materials path
-output_gis_path = "C:\WolongRun\Results_Output"
+output_gis_path = str(main_disk_dir + '\\' + "Results_Output")
 
 
 # Make a dictionary of composite statistics indicators
@@ -895,10 +898,10 @@ except AttributeError:
 
 
 
-class Ui_frm_SEEMS_main(object):
+class Ui_frm_TUL_main(object):
       
   
-    def setupUi(self, frm_SEEMS_main):
+    def setupUi(self, frm_TUL_main):
            
         '''
         The followings are PyQt auto-generated codes from the Qt Designer.
@@ -906,11 +909,11 @@ class Ui_frm_SEEMS_main(object):
         '''
         
         # Set up the main window frame
-        frm_SEEMS_main.setObjectName(_fromUtf8("frm_SEEMS_main"))
-        frm_SEEMS_main.resize(1397, 819)
+        frm_TUL_main.setObjectName(_fromUtf8("frm_TUL_main"))
+        frm_TUL_main.resize(1397, 819)
 
         # Set up the central widget and its layouts
-        self.centralwidget = QtGui.QWidget(frm_SEEMS_main)
+        self.centralwidget = QtGui.QWidget(frm_TUL_main)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.horizontalLayout = QtGui.QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
@@ -993,14 +996,15 @@ class Ui_frm_SEEMS_main(object):
         self.gridLayout = QtGui.QGridLayout()
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.lbl_save_hh = QtGui.QLabel(self.gbx_results_saving_options)
+        self.lbl_save_hh.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.lbl_save_hh.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lbl_save_hh.setObjectName(_fromUtf8("lbl_save_hh"))
-        self.gridLayout.addWidget(self.lbl_save_hh, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.lbl_save_hh, 0, 1, 1, 1)
         self.txt_save_hh_interval = QtGui.QLineEdit(self.gbx_results_saving_options)
         self.txt_save_hh_interval.setMaximumSize(QtCore.QSize(50, 16777215))
         self.txt_save_hh_interval.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.txt_save_hh_interval.setObjectName(_fromUtf8("txt_save_hh_interval"))
-        self.txt_save_hh_interval.setText('1')
-        self.gridLayout.addWidget(self.txt_save_hh_interval, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.txt_save_hh_interval, 0, 2, 1, 1)
         self.lbl_save_hh_years = QtGui.QLabel(self.gbx_results_saving_options)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -1009,19 +1013,25 @@ class Ui_frm_SEEMS_main(object):
         self.lbl_save_hh_years.setSizePolicy(sizePolicy)
         self.lbl_save_hh_years.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lbl_save_hh_years.setObjectName(_fromUtf8("lbl_save_hh_years"))
-        self.gridLayout.addWidget(self.lbl_save_hh_years, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.lbl_save_hh_years, 0, 3, 1, 1)
+        self.ckb_save_hh_status = QtGui.QCheckBox(self.gbx_results_saving_options)
+        self.ckb_save_hh_status.setEnabled(False)
+        self.ckb_save_hh_status.setAcceptDrops(False)
+        self.ckb_save_hh_status.setChecked(True)
+        self.ckb_save_hh_status.setObjectName(_fromUtf8("ckb_save_hh_status"))
+        self.gridLayout.addWidget(self.ckb_save_hh_status, 0, 0, 1, 1)
         self.verticalLayout_6.addLayout(self.gridLayout)
         self.gridLayout_4 = QtGui.QGridLayout()
         self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
+        self.lbl_save_pp = QtGui.QLabel(self.gbx_results_saving_options)
+        self.lbl_save_pp.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbl_save_pp.setObjectName(_fromUtf8("lbl_save_pp"))
+        self.gridLayout_4.addWidget(self.lbl_save_pp, 0, 1, 1, 1)
         self.txt_save_pp_interval = QtGui.QLineEdit(self.gbx_results_saving_options)
         self.txt_save_pp_interval.setMaximumSize(QtCore.QSize(50, 16777215))
         self.txt_save_pp_interval.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.txt_save_pp_interval.setObjectName(_fromUtf8("txt_save_pp_interval"))
-        self.txt_save_pp_interval.setText('1')
-        self.gridLayout_4.addWidget(self.txt_save_pp_interval, 0, 1, 1, 1)
-        self.lbl_save_pp = QtGui.QLabel(self.gbx_results_saving_options)
-        self.lbl_save_pp.setObjectName(_fromUtf8("lbl_save_pp"))
-        self.gridLayout_4.addWidget(self.lbl_save_pp, 0, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.txt_save_pp_interval, 0, 2, 1, 1)
         self.lbl_save_pp_years = QtGui.QLabel(self.gbx_results_saving_options)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -1030,19 +1040,25 @@ class Ui_frm_SEEMS_main(object):
         self.lbl_save_pp_years.setSizePolicy(sizePolicy)
         self.lbl_save_pp_years.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lbl_save_pp_years.setObjectName(_fromUtf8("lbl_save_pp_years"))
-        self.gridLayout_4.addWidget(self.lbl_save_pp_years, 0, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.lbl_save_pp_years, 0, 3, 1, 1)
+        self.ckb_save_person_status = QtGui.QCheckBox(self.gbx_results_saving_options)
+        self.ckb_save_person_status.setEnabled(False)
+        self.ckb_save_person_status.setCheckable(True)
+        self.ckb_save_person_status.setChecked(True)
+        self.ckb_save_person_status.setObjectName(_fromUtf8("ckb_save_person_status"))
+        self.gridLayout_4.addWidget(self.ckb_save_person_status, 0, 0, 1, 1)
         self.verticalLayout_6.addLayout(self.gridLayout_4)
         self.gridLayout_5 = QtGui.QGridLayout()
         self.gridLayout_5.setObjectName(_fromUtf8("gridLayout_5"))
-        self.lbl_save_land = QtGui.QLabel(self.gbx_results_saving_options)
-        self.lbl_save_land.setObjectName(_fromUtf8("lbl_save_land"))
-        self.gridLayout_5.addWidget(self.lbl_save_land, 0, 0, 1, 1)
         self.txt_save_land_interval = QtGui.QLineEdit(self.gbx_results_saving_options)
         self.txt_save_land_interval.setMaximumSize(QtCore.QSize(50, 16777215))
         self.txt_save_land_interval.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.txt_save_land_interval.setObjectName(_fromUtf8("txt_save_land_interval"))
-        self.txt_save_land_interval.setText('1')
-        self.gridLayout_5.addWidget(self.txt_save_land_interval, 0, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.txt_save_land_interval, 0, 2, 1, 1)
+        self.lbl_save_land = QtGui.QLabel(self.gbx_results_saving_options)
+        self.lbl_save_land.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.lbl_save_land.setObjectName(_fromUtf8("lbl_save_land"))
+        self.gridLayout_5.addWidget(self.lbl_save_land, 0, 1, 1, 1)
         self.lbl_save_land_years = QtGui.QLabel(self.gbx_results_saving_options)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -1051,7 +1067,10 @@ class Ui_frm_SEEMS_main(object):
         self.lbl_save_land_years.setSizePolicy(sizePolicy)
         self.lbl_save_land_years.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lbl_save_land_years.setObjectName(_fromUtf8("lbl_save_land_years"))
-        self.gridLayout_5.addWidget(self.lbl_save_land_years, 0, 2, 1, 1)
+        self.gridLayout_5.addWidget(self.lbl_save_land_years, 0, 3, 1, 1)
+        self.ckb_save_landuse_status = QtGui.QCheckBox(self.gbx_results_saving_options)
+        self.ckb_save_landuse_status.setObjectName(_fromUtf8("ckb_save_landuse_status"))
+        self.gridLayout_5.addWidget(self.ckb_save_landuse_status, 0, 0, 1, 1)
         self.verticalLayout_6.addLayout(self.gridLayout_5)
         self.verticalLayout_7.addWidget(self.gbx_results_saving_options)
         self.btn_start_simulation = QtGui.QPushButton(self.gbx_setup_a_scenario)
@@ -1352,26 +1371,26 @@ class Ui_frm_SEEMS_main(object):
         
         # Add the control panel widget            
         self.horizontalLayout.addWidget(self.tab_controlpanel)
-        frm_SEEMS_main.setCentralWidget(self.centralwidget)        
+        frm_TUL_main.setCentralWidget(self.centralwidget)        
                 
         # Other window components - menu, status bar, etc.
-        self.menubar = QtGui.QMenuBar(frm_SEEMS_main)
+        self.menubar = QtGui.QMenuBar(frm_TUL_main)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1397, 31))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName(_fromUtf8("menuHelp"))
-        frm_SEEMS_main.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(frm_SEEMS_main)
+        frm_TUL_main.setMenuBar(self.menubar)
+        self.statusbar = QtGui.QStatusBar(frm_TUL_main)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
-        frm_SEEMS_main.setStatusBar(self.statusbar)
-        self.actionAbout = QtGui.QAction(frm_SEEMS_main)
+        frm_TUL_main.setStatusBar(self.statusbar)
+        self.actionAbout = QtGui.QAction(frm_TUL_main)
         self.actionAbout.setObjectName(_fromUtf8("actionAbout"))
         self.menuHelp.addAction(self.actionAbout)
         self.menubar.addAction(self.menuHelp.menuAction())
 
-        self.retranslateUi(frm_SEEMS_main)
+        self.retranslateUi(frm_TUL_main)
         self.tab_controlpanel.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(frm_SEEMS_main)
+        QtCore.QMetaObject.connectSlotsByName(frm_TUL_main)
     
     
         '''
@@ -1435,7 +1454,7 @@ class Ui_frm_SEEMS_main(object):
         self.map_layout.addWidget(self.map.scrollArea)
                 
         # Add a toolbar for map display controls
-        self.add_toolbar(frm_SEEMS_main)
+        self.add_toolbar(frm_TUL_main)
         
 
 
@@ -1459,52 +1478,57 @@ class Ui_frm_SEEMS_main(object):
         
 
 
-    def retranslateUi(self, frm_SEEMS_main):
-        frm_SEEMS_main.setWindowTitle(_translate("frm_SEEMS_main", "SEEMS  -  Socio-Econ-Ecosystem Multipurpose Simulator", None))
-        self.gbx_setup_a_scenario.setTitle(_translate("frm_SEEMS_main", "Setup a New Scenario", None))
-        self.lbl_input_scenario_name.setText(_translate("frm_SEEMS_main", "Scenario Name:", None))
-        self.gbx_set_simulation_period.setTitle(_translate("frm_SEEMS_main", "Set Simulation Period", None))
-        self.lbl_set_simulation_start_year.setText(_translate("frm_SEEMS_main", "Start Year:", None))
-        self.lbl_set_simulation_end_year.setText(_translate("frm_SEEMS_main", "End Year:", None))
-        self.gbx_results_saving_options.setTitle(_translate("frm_SEEMS_main", "Results Saving Options", None))
-        self.lbl_save_hh.setText(_translate("frm_SEEMS_main", "Save Household Status to Database Every", None))
-        self.lbl_save_hh_years.setText(_translate("frm_SEEMS_main", "Year(s)", None))
-        self.lbl_save_pp.setText(_translate("frm_SEEMS_main", "Save Person Status to Database Every", None))
-        self.lbl_save_pp_years.setText(_translate("frm_SEEMS_main", "Year(s)", None))
-        self.lbl_save_land.setText(_translate("frm_SEEMS_main", "Save LandUse Status to Database Every", None))
-        self.lbl_save_land_years.setText(_translate("frm_SEEMS_main", "Year(s)", None))
-        self.btn_start_simulation.setText(_translate("frm_SEEMS_main", "Start Simulation", None))
-        self.gbx_manage_scenarios.setTitle(_translate("frm_SEEMS_main", "Manage Scenarios", None))
-        self.lbl_select_manage_scenario.setText(_translate("frm_SEEMS_main", "Select Scenario:", None))
-        self.btn_rename_scenario.setText(_translate("frm_SEEMS_main", "Rename", None))
-        self.btn_delete_scenario.setText(_translate("frm_SEEMS_main", "Delete", None))
-        self.tab_controlpanel.setTabText(self.tab_controlpanel.indexOf(self.scenarios_manager), _translate("frm_SEEMS_main", "Scenarios Manager", None))
-        self.gpb_select_plot_data_type.setTitle(_translate("frm_SEEMS_main", "Plot Data Type", None))
-        self.rbt_single_variable_time_series.setText(_translate("frm_SEEMS_main", "Single Variable Time Series", None))
-        self.rbt_multi_variable_time_series.setText(_translate("frm_SEEMS_main", "Multi Variable Time Series", None))
-        self.rbt_single_variable_cross_section.setText(_translate("frm_SEEMS_main", "Single Variable Cross Section", None))
-        self.gbx_select_plot_scenario_and_variable.setTitle(_translate("frm_SEEMS_main", "Scenario and Variable", None))
-        self.lbl_select_review_scenario.setText(_translate("frm_SEEMS_main", "Select Scenario:", None))
-        self.lbl_select_review_variable.setText(_translate("frm_SEEMS_main", "Select Variable:", None))
-        self.gbx_select_plot_period_and_type.setTitle(_translate("frm_SEEMS_main", "Plot Period and Type", None))
-        self.gbx_plot_period.setTitle(_translate("frm_SEEMS_main", "Plot Period", None))
-        self.lbl_select_plot_start_year.setText(_translate("frm_SEEMS_main", "Select Start Year:", None))
-        self.lbl_select_plot_end_year.setText(_translate("frm_SEEMS_main", "Select End Year:", None))
-        self.gbx_plot_type.setTitle(_translate("frm_SEEMS_main", "Plot Type", None))
-        self.rbt_bar_chart.setText(_translate("frm_SEEMS_main", "(Stacked) Bars", None))
-        self.rbt_line_chart.setText(_translate("frm_SEEMS_main", "(Multiple) Lines", None))
-        self.rbt_histogram.setText(_translate("frm_SEEMS_main", "Histogram", None))
-        self.btn_review_plot.setText(_translate("frm_SEEMS_main", "Plot", None))
-        self.tab_controlpanel.setTabText(self.tab_controlpanel.indexOf(self.results_charts), _translate("frm_SEEMS_main", "Results - Charts", None))
-        self.gpb_map_settings.setTitle(_translate("frm_SEEMS_main", "Map Settings", None))
-        self.lbl_select_map_scenario.setText(_translate("frm_SEEMS_main", "Select Scenario:", None))
-        self.lbl_select_map_layer.setText(_translate("frm_SEEMS_main", "Select Map Layer:", None))
-        self.lbl_select_map_year.setText(_translate("frm_SEEMS_main", "Select Map Year:", None))
-        self.btn_show_map.setText(_translate("frm_SEEMS_main", "Show Map", None))
-        self.tab_controlpanel.setTabText(self.tab_controlpanel.indexOf(self.results_maps), _translate("frm_SEEMS_main", "Results - Maps", None))
-        self.menuHelp.setTitle(_translate("frm_SEEMS_main", "Help", None))
-        self.actionAbout.setText(_translate("frm_SEEMS_main", "About", None))
-
+    def retranslateUi(self, frm_TUL_main):
+        frm_TUL_main.setWindowTitle(_translate("frm_TUL_main", "The Urbanization Lab", None))
+        self.gbx_setup_a_scenario.setTitle(_translate("frm_TUL_main", "Setup a New Scenario", None))
+        self.lbl_input_scenario_name.setText(_translate("frm_TUL_main", "Scenario Name:", None))
+        self.gbx_set_simulation_period.setTitle(_translate("frm_TUL_main", "Set Simulation Period", None))
+        self.lbl_set_simulation_start_year.setText(_translate("frm_TUL_main", "Start Year:", None))
+        self.lbl_set_simulation_end_year.setText(_translate("frm_TUL_main", "End Year:", None))
+        self.gbx_results_saving_options.setTitle(_translate("frm_TUL_main", "Results Saving Options", None))
+        self.lbl_save_hh.setText(_translate("frm_TUL_main", " Every", None))
+        self.txt_save_hh_interval.setText(_translate("frm_TUL_main", "1", None))
+        self.lbl_save_hh_years.setText(_translate("frm_TUL_main", "Year(s)", None))
+        self.ckb_save_hh_status.setText(_translate("frm_TUL_main", "Save Household Status", None))
+        self.lbl_save_pp.setText(_translate("frm_TUL_main", " Every", None))
+        self.txt_save_pp_interval.setText(_translate("frm_TUL_main", "1", None))
+        self.lbl_save_pp_years.setText(_translate("frm_TUL_main", "Year(s)", None))
+        self.ckb_save_person_status.setText(_translate("frm_TUL_main", "Save Person Status", None))
+        self.txt_save_land_interval.setText(_translate("frm_TUL_main", "1", None))
+        self.lbl_save_land.setText(_translate("frm_TUL_main", " Every", None))
+        self.lbl_save_land_years.setText(_translate("frm_TUL_main", "Year(s)", None))
+        self.ckb_save_landuse_status.setText(_translate("frm_TUL_main", "Save LandUse Status", None))
+        self.btn_start_simulation.setText(_translate("frm_TUL_main", "Start Simulation", None))
+        self.gbx_manage_scenarios.setTitle(_translate("frm_TUL_main", "Manage Scenarios", None))
+        self.lbl_select_manage_scenario.setText(_translate("frm_TUL_main", "Select Scenario:", None))
+        self.btn_rename_scenario.setText(_translate("frm_TUL_main", "Rename", None))
+        self.btn_delete_scenario.setText(_translate("frm_TUL_main", "Delete", None))
+        self.tab_controlpanel.setTabText(self.tab_controlpanel.indexOf(self.scenarios_manager), _translate("frm_TUL_main", "Scenarios Manager", None))
+        self.gpb_select_plot_data_type.setTitle(_translate("frm_TUL_main", "Plot Data Type", None))
+        self.rbt_single_variable_time_series.setText(_translate("frm_TUL_main", "Single Variable Time Series", None))
+        self.rbt_multi_variable_time_series.setText(_translate("frm_TUL_main", "Multi Variable Time Series", None))
+        self.rbt_single_variable_cross_section.setText(_translate("frm_TUL_main", "Single Variable Cross Section", None))
+        self.gbx_select_plot_scenario_and_variable.setTitle(_translate("frm_TUL_main", "Scenario and Variable", None))
+        self.lbl_select_review_scenario.setText(_translate("frm_TUL_main", "Select Scenario:", None))
+        self.lbl_select_review_variable.setText(_translate("frm_TUL_main", "Select Variable:", None))
+        self.gbx_select_plot_period_and_type.setTitle(_translate("frm_TUL_main", "Plot Period and Type", None))
+        self.gbx_plot_period.setTitle(_translate("frm_TUL_main", "Plot Period", None))
+        self.lbl_select_plot_start_year.setText(_translate("frm_TUL_main", "Select Start Year:", None))
+        self.lbl_select_plot_end_year.setText(_translate("frm_TUL_main", "Select End Year:", None))
+        self.gbx_plot_type.setTitle(_translate("frm_TUL_main", "Plot Type", None))
+        self.rbt_bar_chart.setText(_translate("frm_TUL_main", "(Stacked) Bars", None))
+        self.rbt_line_chart.setText(_translate("frm_TUL_main", "(Multiple) Lines", None))
+        self.rbt_histogram.setText(_translate("frm_TUL_main", "Histogram", None))
+        self.btn_review_plot.setText(_translate("frm_TUL_main", "Plot", None))
+        self.tab_controlpanel.setTabText(self.tab_controlpanel.indexOf(self.results_charts), _translate("frm_TUL_main", "Results - Charts", None))
+        self.gpb_map_settings.setTitle(_translate("frm_TUL_main", "Map Settings", None))
+        self.lbl_select_map_scenario.setText(_translate("frm_TUL_main", "Select Scenario:", None))
+        self.lbl_select_map_layer.setText(_translate("frm_TUL_main", "Select Map Layer:", None))
+        self.lbl_select_map_year.setText(_translate("frm_TUL_main", "Select Map Year:", None))
+        self.btn_show_map.setText(_translate("frm_TUL_main", "Show Map", None))
+        self.tab_controlpanel.setTabText(self.tab_controlpanel.indexOf(self.results_maps), _translate("frm_TUL_main", "Results - Maps", None))
+        self.menuHelp.setTitle(_translate("frm_TUL_main", "Help", None))
+        self.actionAbout.setText(_translate("frm_TUL_main", "About", None))
 
 
 
@@ -2101,7 +2125,7 @@ class Ui_frm_SEEMS_main(object):
         
               
         
-    def add_toolbar(self, frm_SEEMS_main):
+    def add_toolbar(self, frm_TUL_main):
         
         # Find the icons
         zoom_in_icon_location = str(icons_path + '\\ZoomIn.png')
@@ -2109,9 +2133,9 @@ class Ui_frm_SEEMS_main(object):
         zoom_actual_size_icon_location = str(icons_path + '\\ZoomActualSize.png')
 
         # Define the actions
-        action_zoom_in = QtGui.QAction(QtGui.QIcon(zoom_in_icon_location), 'Zoom In', frm_SEEMS_main)        
-        action_zoom_out = QtGui.QAction(QtGui.QIcon(zoom_out_icon_location), 'Zoom Out', frm_SEEMS_main)
-        action_zoom_actual_size = QtGui.QAction(QtGui.QIcon(zoom_actual_size_icon_location), 'Zoom Actual Size', frm_SEEMS_main)
+        action_zoom_in = QtGui.QAction(QtGui.QIcon(zoom_in_icon_location), 'Zoom In', frm_TUL_main)        
+        action_zoom_out = QtGui.QAction(QtGui.QIcon(zoom_out_icon_location), 'Zoom Out', frm_TUL_main)
+        action_zoom_actual_size = QtGui.QAction(QtGui.QIcon(zoom_actual_size_icon_location), 'Zoom Actual Size', frm_TUL_main)
         
         # Define the action events
         action_zoom_in.triggered.connect(self.zoom_in)
@@ -2119,7 +2143,7 @@ class Ui_frm_SEEMS_main(object):
         action_zoom_actual_size.triggered.connect(self.zoom_actual_size)
         
         # Add the toolbar
-        self.toolbar = frm_SEEMS_main.addToolBar('Image View Controls')
+        self.toolbar = frm_TUL_main.addToolBar('Image View Controls')
         
         # Add actions into the toolbar
         self.toolbar.addAction(action_zoom_in)
@@ -2261,17 +2285,17 @@ class MplCanvas(FigureCanvas):
 
 class Ui_SEEMS_help_about(object):
     def setupUi(self, SEEMS_help_about):
-        SEEMS_help_about.setObjectName(_fromUtf8("SEEMS_help_about"))
-        SEEMS_help_about.resize(475, 300)
-        self.btn_OK = QtGui.QPushButton(SEEMS_help_about)
+        TUL_help_about.setObjectName(_fromUtf8("TUL_help_about"))
+        TUL_help_about.resize(475, 300)
+        self.btn_OK = QtGui.QPushButton(TUL_help_about)
         self.btn_OK.setGeometry(QtCore.QRect(180, 250, 112, 34))
         self.btn_OK.setObjectName(_fromUtf8("btn_OK"))
-        self.lbl_SEEMS_about = QtGui.QLabel(SEEMS_help_about)
+        self.lbl_SEEMS_about = QtGui.QLabel(TUL_help_about)
         self.lbl_SEEMS_about.setGeometry(QtCore.QRect(10, 30, 451, 201))
         self.lbl_SEEMS_about.setObjectName(_fromUtf8("lbl_SEEMS_about"))
 
-        self.retranslateUi(SEEMS_help_about)
-        QtCore.QMetaObject.connectSlotsByName(SEEMS_help_about)
+        self.retranslateUi(TUL_help_about)
+        QtCore.QMetaObject.connectSlotsByName(TUL_help_about)
         
         '''
         Event handling
@@ -2281,12 +2305,9 @@ class Ui_SEEMS_help_about(object):
 
 
     def retranslateUi(self, SEEMS_help_about):
-        SEEMS_help_about.setWindowTitle(_translate("SEEMS_help_about", "SEEMS - About", None))
-        self.btn_OK.setText(_translate("SEEMS_help_about", "OK", None))
-        self.lbl_SEEMS_about.setText(_translate("SEEMS_help_about", 
-            "<html><head/><body><p align=\"center\">SEEMS - Socio-Econ-Ecosystem Multipurpose Simulator</p> \
-            <p align=\"center\">v 0.9.0</p><p align=\"center\">Created by Liyan Xu and Hongmou Zhang</p> \
-            <p align=\"center\">@MIT</p><p align=\"center\">2015.6.9</p></body></html>", None))
+        TUL_help_about.setWindowTitle(_translate("TUL_help_about", "The Urbanization Lab - About", None))
+        self.btn_OK.setText(_translate("TUL_help_about", "OK", None))
+        self.lbl_SEEMS_about.setText(_translate("TUL_help_about", "<html><head/><body><p align=\"center\">The Urbanization Lab</p><p align=\"center\">v 1.0.1 beta</p><p align=\"center\">Created by Liyan Xu</p><p align=\"center\">@MIT</p><p align=\"center\">2015.6.9</p></body></html>", None))
 
 
 

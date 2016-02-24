@@ -20,7 +20,7 @@ if __name__ == '__main__':
       
     main_window = QtGui.QMainWindow()
   
-    main = main_submodules.Ui_frm_SEEMS_main()
+    main = main_submodules.Ui_frm_TUL_main()
     main.setupUi(main_window)
       
     main_window.show()
